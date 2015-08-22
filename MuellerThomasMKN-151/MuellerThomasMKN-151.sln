@@ -3,7 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuellerThomasMKN-151", "MuellerThomasMKN-151\MuellerThomasMKN-151.csproj", "{DFB4C63B-08BE-4A45-B77D-3BD3F6DBD421}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuellerThomasMKN-151", "MuellerThomasMKN-151\MuellerThomasMKN-151.csproj", "{450753BF-B5EE-4C8B-B2C5-04AFFBD6F586}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{7868DA69-10F5-477B-A42C-313A1BDB497D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{38D5A82B-2E48-4BDB-AF90-3EC4350CA4FB}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1 = PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{FA16D873-836C-4C28-B5AD-3B26DF6E73DE}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Templates\MuellerThomasMKN-151.json = PublishScripts\Templates\MuellerThomasMKN-151.json
+		PublishScripts\Templates\MuellerThomasMKN-151.param.dev.json = PublishScripts\Templates\MuellerThomasMKN-151.param.dev.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +24,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DFB4C63B-08BE-4A45-B77D-3BD3F6DBD421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DFB4C63B-08BE-4A45-B77D-3BD3F6DBD421}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DFB4C63B-08BE-4A45-B77D-3BD3F6DBD421}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DFB4C63B-08BE-4A45-B77D-3BD3F6DBD421}.Release|Any CPU.Build.0 = Release|Any CPU
+		{450753BF-B5EE-4C8B-B2C5-04AFFBD6F586}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{450753BF-B5EE-4C8B-B2C5-04AFFBD6F586}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{450753BF-B5EE-4C8B-B2C5-04AFFBD6F586}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{450753BF-B5EE-4C8B-B2C5-04AFFBD6F586}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{38D5A82B-2E48-4BDB-AF90-3EC4350CA4FB} = {7868DA69-10F5-477B-A42C-313A1BDB497D}
+		{FA16D873-836C-4C28-B5AD-3B26DF6E73DE} = {7868DA69-10F5-477B-A42C-313A1BDB497D}
 	EndGlobalSection
 EndGlobal

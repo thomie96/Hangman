@@ -1,0 +1,32 @@
+{
+  "siteName": {
+    "value": "MuellerThomasHangman"
+  },
+  "hostingPlanName": {
+    "value": "Default1"
+  },
+  "siteLocation": {
+    "value": "West Europe"
+  },
+  "sku": {
+    "value": "Free"
+  },
+  "workerSize": {
+    "value": "0"
+  },
+  "serverName": {
+    "value": "muellerthomasmkn151"
+  },
+  "serverLocation": {
+    "value": "West Europe"
+  },
+  "administratorLogin": {
+    "value": "thomie"
+  },
+  "administratorLoginPassword": {
+    "value": "Gimpi1996"
+  },
+  "databaseName": {
+    "value": "MuellerThomasHangman_db"
+  }
+}
