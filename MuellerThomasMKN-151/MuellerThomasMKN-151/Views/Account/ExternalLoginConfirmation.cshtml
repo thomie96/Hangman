@@ -1,21 +1,21 @@
 ﻿@model MuellerThomasMKN_151.Models.ExternalLoginConfirmationViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Registrieren";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>Associate your @ViewBag.LoginProvider account.</h3>
+<h2>@ViewBag.Title</h2>
+<h3>Verbinde deinen @ViewBag.LoginProvider Account.</h3>
 
 @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
-    <h4>Association Form</h4>
+    <h4>Verbindungsformular</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <p class="text-info">
-        You've successfully authenticated with <strong>@ViewBag.LoginProvider</strong>.
-        Please enter a user name for this site below and click the Register button to finish
-        logging in.
+        Du hast dich erfolgreich mit <strong>@ViewBag.LoginProvider</strong> authentifiziert.
+        Bitte gebe einen Benutzernamen für diese Seiete ein und beende dein Login mit einem Klick 
+        auf Registrieren.
     </p>
     <div class="form-group">
         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
