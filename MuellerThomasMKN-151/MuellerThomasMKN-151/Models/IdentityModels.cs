@@ -23,11 +23,14 @@ namespace MuellerThomasMKN_151.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer<ApplicationDbContext>(null);
         }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet <MuellerThomasMKN_151.Models.Word> Words { get; set; }
     }
 }
