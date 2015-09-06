@@ -1404,6 +1404,11 @@ pre code {
   }
 }
 
+.gamestart {
+  margin-right: auto;
+  margin-left: auto;
+}
+
 table {
   max-width: 100%;
   background-color: transparent;
