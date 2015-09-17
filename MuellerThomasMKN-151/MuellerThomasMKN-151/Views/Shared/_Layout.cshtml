@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+@using System.Security.Principal
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,15 +29,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+
                 @Html.ActionLink("Hangman", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+                <!-- Home link als Bild
+                <a href='@Url.Action("Index", "Home")'>
+                    <img src='@Url.Content("~/Images/Hangman_Home_Icon.jpg")' />
+                </a>
+                -->
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                     @if (Request.IsAuthenticated) {
-                        <li>@Html.ActionLink("Rätselwörter", "Index", "Words")</li>
+                        <li>@Html.ActionLink(User.Identity.GetUserName(), "Index", "Words")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

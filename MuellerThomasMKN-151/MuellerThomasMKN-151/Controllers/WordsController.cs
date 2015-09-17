@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MuellerThomasMKN_151.Models;
+using System.Security.Principal;
 
 namespace MuellerThomasMKN_151.Controllers
 {
@@ -17,6 +18,10 @@ namespace MuellerThomasMKN_151.Controllers
         // GET: Words
         public ActionResult Index(string sortOrder, string searchString)
         {
+            if (!IsAdmin (User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             ViewBag.CurrentFilter = searchString;
             var words = from word in db.Words
                         select word;
@@ -49,6 +54,11 @@ namespace MuellerThomasMKN_151.Controllers
         // GET: Words/Details/5
         public ActionResult Details(int? id)
         {
+            if (!IsAdmin(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -64,6 +74,11 @@ namespace MuellerThomasMKN_151.Controllers
         // GET: Words/Create
         public ActionResult Create()
         {
+            if (!IsAdmin(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 
@@ -87,6 +102,11 @@ namespace MuellerThomasMKN_151.Controllers
         // GET: Words/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!IsAdmin(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -118,6 +138,11 @@ namespace MuellerThomasMKN_151.Controllers
         // GET: Words/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!IsAdmin(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -148,6 +173,11 @@ namespace MuellerThomasMKN_151.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        protected static bool IsAdmin(IPrincipal user)
+        {
+            return user != null && user.Identity.Name.Equals("Admin");
         }
     }
 }

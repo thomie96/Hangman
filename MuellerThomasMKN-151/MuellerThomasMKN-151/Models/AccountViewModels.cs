@@ -3,18 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MuellerThomasMKN_151.Models
 {
-    public class ExternalLoginConfirmationViewModel
-    {
-        [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-    }
-
-    public class ExternalLoginListViewModel
-    {
-        public string ReturnUrl { get; set; }
-    }
-
     public class SendCodeViewModel
     {
         public string SelectedProvider { get; set; }
@@ -49,10 +37,9 @@ namespace MuellerThomasMKN_151.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
-
+        [Display(Name = "Benutzername")]
+        public string UserName { get; set; }
+        
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Passwort")]
@@ -64,6 +51,10 @@ namespace MuellerThomasMKN_151.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "Benutzername")]
+        public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
