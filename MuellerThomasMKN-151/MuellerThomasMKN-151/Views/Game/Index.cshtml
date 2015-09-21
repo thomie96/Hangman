@@ -3,36 +3,45 @@
     ViewBag.Title = "Game";
 }
 
-@{
-    <button type="submit" class="btn btn-default" name"letter" value"A">A</button>
-    <button type="submit" class="btn btn-default" name"letter" value"B">B</button>
-    <button type="submit" class="btn btn-default" name"letter" value"C">C</button>
-    <button type="submit" class="btn btn-default" name"letter" value"D">D</button>
-    <button type="submit" class="btn btn-default" name"letter" value"E">E</button>
-    <button type="submit" class="btn btn-default" name"letter" value"F">F</button>
-    <button type="submit" class="btn btn-default" name"letter" value"G">G</button>
-    <button type="submit" class="btn btn-default" name"letter" value"H">H</button>
-    <button type="submit" class="btn btn-default" name"letter" value"I">I</button>
-    <button type="submit" class="btn btn-default" name"letter" value"J">J</button>
-    <button type="submit" class="btn btn-default" name"letter" value"K">K</button>
-    <button type="submit" class="btn btn-default" name"letter" value"L">L</button>
-    <button type="submit" class="btn btn-default" name"letter" value"M">M</button>
-    <button type="submit" class="btn btn-default" name"letter" value"N">N</button>
-    <button type="submit" class="btn btn-default" name"letter" value"O">O</button><br/>
-    <button type="submit" class="btn btn-default" name"letter" value"P">P</button>
-    <button type="submit" class="btn btn-default" name"letter" value"P">Q</button>
-    <button type="submit" class="btn btn-default" name"letter" value"P">R</button>
-    <button type="submit" class="btn btn-default" name"letter" value"P">S</button>
-    <button type="submit" class="btn btn-default" name"letter" value"P">T</button>
-    <button type="submit" class="btn btn-default" name"letter" value"P">U</button>
-    <button type="submit" class="btn btn-default" name"letter" value"P">V</button>
-    <button type="submit" class="btn btn-default" name"letter" value"P">W</button>
-    <button type="submit" class="btn btn-default" name"letter" value"P">X</button>
-    <button type="submit" class="btn btn-default" name"letter" value"P">Y</button>
-    <button type="submit" class="btn btn-default" name"letter" value"P">Z</button>
-    <button type="submit" class="btn btn-default" name"letter" value"P">Ä</button>
-    <button type="submit" class="btn btn-default" name"letter" value"P">Ü</button>
-    <button type="submit" class="btn btn-default" name"letter" value"P">Ö</button>
 
+
+@{
+
+
+    <p>@((string)ViewData["Word"])</p>
+}
+
+@using (Html.BeginForm("LetterChosen", "Game", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <input type="submit" class="btn btn-default" name"letter" value"A" />
+    <input type="submit" class="btn btn-default" name"letter" value"B" />
+    <input type="submit" class="btn btn-default" name"letter" value"C" />
+    <input type="submit" class="btn btn-default" name"letter" value"D" />
+    <input type="submit" class="btn btn-default" name"letter" value"E" />
+    <input type="submit" class="btn btn-default" name"letter" value"F" />
+    <input type="submit" class="btn btn-default" name"letter" value"G" />
+    <input type="submit" class="btn btn-default" name"letter" value"H" />
+    <input type="submit" class="btn btn-default" name"letter" value"I" />
+    <input type="submit" class="btn btn-default" name"letter" value"J" />
+    <input type="submit" class="btn btn-default" name"letter" value"K" />
+    <input type="submit" class="btn btn-default" name"letter" value"L" />
+    <input type="submit" class="btn btn-default" name"letter" value"M" />
+    <input type="submit" class="btn btn-default" name"letter" value"N" />
+    <input type="submit" class="btn btn-default" name"letter" value"O" /><br />
+    <input type="submit" class="btn btn-default" name"letter" value"P" />
+    <input type="submit" class="btn btn-default" name"letter" value"Q" />
+    <input type="submit" class="btn btn-default" name"letter" value"R" />
+    <input type="submit" class="btn btn-default" name"letter" value"S" />
+    <input type="submit" class="btn btn-default" name"letter" value"T" />
+    <input type="submit" class="btn btn-default" name"letter" value"U" />
+    <input type="submit" class="btn btn-default" name"letter" value"V" />
+    <input type="submit" class="btn btn-default" name"letter" value"W" />
+    <input type="submit" class="btn btn-default" name"letter" value"X" />
+    <input type="submit" class="btn btn-default" name"letter" value"Y" />
+    <input type="submit" class="btn btn-default" name"letter" value"Z" />
+    <input type="submit" class="btn btn-default" name"letter" value"Ä" />
+    <input type="submit" class="btn btn-default" name"letter" value"Ü" />
+    <input type="submit" class="btn btn-default" name"letter" value"Ö" />
 }
 

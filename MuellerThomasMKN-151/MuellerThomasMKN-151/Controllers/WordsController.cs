@@ -175,9 +175,9 @@ namespace MuellerThomasMKN_151.Controllers
             base.Dispose(disposing);
         }
 
-        protected static bool IsAdmin(IPrincipal user)
+        protected bool IsAdmin(IPrincipal user)
         {
-            return user != null && user.Identity.Name.Equals("Admin");
+            return user != null && user.IsInRole("Admin");
         }
     }
 }
