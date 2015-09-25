@@ -12,17 +12,15 @@ namespace MuellerThomasMKN_151.Controllers
     {
         protected ApplicationDbContext db = ApplicationDbContext.Create();
 
-        protected Game gameData = new Game (1);
-
         // GET: Game
-        public ActionResult Index()
-        {
-            gameData.completeWord   = GetRandomWord();
-            gameData.hiddenWord     = CreateHiddenWord (gameData.completeWord);
-            ViewData ["Word"]       = InsertSpaces(gameData.hiddenWord);
+        public ActionResult Index() {
+            Game game = new Game(1);
+            game.completeWord   = GetRandomWord();
+            game.hiddenWord     = Game.CreateHiddenWord (game.completeWord);
+            ViewData ["Word"]   = Game.InsertSpaces(game.hiddenWord);
 
-            Session.Add("Hangman", gameData);
-            return View();
+            Session.Add("Hangman", game);
+            return View(game);
         }
 
         
@@ -33,71 +31,29 @@ namespace MuellerThomasMKN_151.Controllers
             Random rand = new Random();
             int rnd = rand.Next(0, Words.Count() - 1);
             return Words[rnd].Name;
-
         }
 
-        // replaces every character in completeWord with a '_'
-        public string CreateHiddenWord (string completeWord)
-        {
-            return new string ('_', completeWord.Length);
-        }
-
-
-        // Insert a space between every character
-        public string InsertSpaces(string word)
-        {
-            return String.Join<char>(" ", word);
-        }
 
         [HttpPost]
         public ActionResult LetterChosen(string value)
         {
+            Game game = (Game)Session["Hangman"];
             // error input ---- shouldn't be possible
             if (value == null || value.Length == 0) {
                 return View();
             }
 
             char letter = value[0];
-            // check if letter iscorrect 
-            if (IsLetterCorrect(letter)) {
-                // replace underscores in hiddenword with the letter
-                FillInLetter(letter);
-            }
 
-            return View();
+            game.LetterChosen(letter);
+
+            Session["Hangman"] = game;
+            ViewData["Word"] = Game.InsertSpaces(game.hiddenWord);
+            return View("Index", game);
         }
 
 
-        protected bool IsLetterCorrect(char letter)
-        {
-            return gameData.completeWord.Contains(letter) && !gameData.hiddenWord.Contains(letter);
-        }
 
-
-        protected void FillInLetter(char letter)
-        {
-            StringBuilder word = new StringBuilder(gameData.hiddenWord); 
-            for (int pos = pos = gameData.completeWord.IndexOf(letter); pos < gameData.completeWord.Length && pos < word.Length; pos++, pos = gameData.completeWord.IndexOf(letter, pos)) {
-                if (pos >= 0 && pos < word.Length) {
-                    word[pos] = letter;
-                }
-            }
-            gameData.hiddenWord = word.ToString();
-        }
-
-
-        protected Game.eGameState GetGameState()
-        {
-            if (gameData.currentErrors >= Game.MAX_ERRORS)
-            {
-                return Game.eGameState.LOST;
-            }
-            else if (gameData.completeWord.Equals(gameData.hiddenWord))
-            {
-                return Game.eGameState.WON;
-            }
-            return Game.eGameState.ACTIVE;
-        }
 
     }
     

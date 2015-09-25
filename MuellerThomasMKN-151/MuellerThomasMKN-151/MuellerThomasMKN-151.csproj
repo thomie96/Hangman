@@ -224,6 +224,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-MuellerThomasMKN-151-20150822113759.mdf" />
+    <Content Include="App_Data\aspnet-MuellerThomasMKN-151-20150822113759_log.ldf">
+      <DependentUpon>aspnet-MuellerThomasMKN-151-20150822113759.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -284,9 +288,7 @@
     <Content Include="Views\Words\Index.cshtml" />
     <Content Include="Views\Game\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

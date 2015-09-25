@@ -10,12 +10,14 @@
     @Html.ActionLink("Wort erfassen", "Create")
 </p>
 
-@using (Html.BeginForm ("Index", "Words", FormMethod.Get))
+@using (Html.BeginForm("Index", "Words", FormMethod.Get))
 {
-    <p>
-        Find by name: @Html.TextBox("searchString")
-        <input type="submit" value="Suchen" />
-    </p>
+    <p>Nach Wort suchen: </p>
+    <div class="form-inline">
+        @Html.TextBox("searchString", null, new { @class = "form-control" })
+        <input type="submit" class="btn btn-default" value="Suchen" />
+    </div>
+    <br />
 }
 
 <table class="table">
@@ -26,17 +28,18 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Bearbeiten", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Löschen", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Bearbeiten", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Löschen", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>
