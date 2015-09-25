@@ -1,11 +1,10 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Hangman";
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>H A N G M A N</h1>
+    <p class="lead">Das Spiel Hangman als WebApp realisiert</p>
 </div>
 
 
@@ -21,7 +20,7 @@
             <p><a class="btn btn-default" href=@Url.Action("Login", "Account")>Anmelden</a></p>
         </div>
         <div class="col-md-3">
-            <p><a class="btn btn-default" href=@Url.Action("Index", "Game")>Ohne Anmeldung</a></p>
+            <p><a class="btn btn-default" href=@Url.Action("Index", "Game")>Spielen ohne Login</a></p>
         </div>
     </div>
 }

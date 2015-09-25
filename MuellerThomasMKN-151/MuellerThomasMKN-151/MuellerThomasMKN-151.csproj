@@ -234,12 +234,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\Hangman_home_icon.jpg" />
+    <Content Include="Images\hangman_0.png" />
+    <Content Include="Images\hangman_1.png" />
+    <Content Include="Images\hangman_10.png" />
+    <Content Include="Images\hangman_2.png" />
+    <Content Include="Images\hangman_3.png" />
+    <Content Include="Images\hangman_4.png" />
+    <Content Include="Images\hangman_5.png" />
+    <Content Include="Images\hangman_6.png" />
+    <Content Include="Images\hangman_7.png" />
+    <Content Include="Images\hangman_8.png" />
+    <Content Include="Images\hangman_9.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config" />
     <None Include="Properties\PublishProfiles\MuellerThomasHangman %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\MuellerThomasHangman.pubxml" />
+    <None Include="Properties\PublishProfiles\MuellerThomasHangman.pubxml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\PublishProfiles\MuellerThomasMKN-151.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -264,7 +276,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />

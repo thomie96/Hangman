@@ -19,20 +19,30 @@ namespace MuellerThomasMKN_151.Models
         public int currentErrors { get; set; }
         public string completeWord { get; set; } // solution
         public string hiddenWord { get; set; }   // Underlines for letters which aren't found yet
+        public string showWord { get; set; }     // word that is shown; it contains spaces between each letter
         public string usedLetters { get; set; }
 
         public eGameState state { get; set; }
 
 
         public Game (int gameID) {
-            gameID          = -1;
-            currentErrors   = 0;
-            maxErrors       = MAX_ERRORS_MEDIUM;
-            completeWord    = "";
-            hiddenWord      = "";
-            usedLetters     = "";
-            state           = eGameState.ACTIVE;
+            this.gameID          = gameID;
+            this.currentErrors   = 0;
+            this.maxErrors       = MAX_ERRORS_EASY;
+            this.completeWord    = "";
+            this.hiddenWord      = "";
+            this.showWord        = "";
+            this.usedLetters     = "";
+            this.state           = eGameState.ACTIVE;
         }
+
+        // initialize the words
+        public void InitializeWords(string word) {
+            completeWord    = word;
+            hiddenWord      = CreateHiddenWord(completeWord);
+            showWord        = InsertSpaces(hiddenWord);
+        }
+        
 
         // replaces every character in completeWord with a '_'
         public static string CreateHiddenWord(string completeWord)
@@ -46,31 +56,38 @@ namespace MuellerThomasMKN_151.Models
             return String.Join<char>(" ", word);
         }
 
+
+        // called when letter is chosen
         public void LetterChosen(char letter) {
             // check if letter iscorrect 
-            if (IsLetterCorrect(letter))
-            {
+            if (IsLetterCorrect(letter)) {
                 // replace underscores in hiddenword with the letter
                 FillInLetter(letter);
-            } else
-            {
+                // put spaces between letters
+                showWord = InsertSpaces(hiddenWord);
+            } else {
                 currentErrors++;
             }
+            // add the clicked letter to the used ones
             usedLetters += letter;
+            // load the new State
             state = GetGameState();
-
         }
 
+        // returns if letter is contained in the word but not in the hiddenword
         protected bool IsLetterCorrect(char letter)
         {
             return completeWord.ToUpper().Contains(letter) && !hiddenWord.ToUpper().Contains(letter);
         }
 
-
+        // replace underscore in hiddenword with the letter
         protected void FillInLetter(char letter)
         {
             StringBuilder word = new StringBuilder(hiddenWord);
-            for (int pos = pos = completeWord.ToUpper().IndexOf(letter); pos != -1 && pos < completeWord.Length && pos < word.Length; pos++, pos = completeWord.ToUpper().IndexOf(letter, pos))
+            int pos = completeWord.ToUpper().IndexOf(letter);
+
+            for (; pos != -1 && pos < completeWord.Length && pos < word.Length; 
+                pos = completeWord.ToUpper().IndexOf(letter, ++pos))
             {
                 if (pos >= 0 && pos < word.Length)
                 {
@@ -94,8 +111,8 @@ namespace MuellerThomasMKN_151.Models
             return eGameState.ACTIVE;
         }
 
-
-        public string isDisabled(char letter)
+        // check if 
+        public string isUsedLetter(char letter)
         {
             if (usedLetters.Contains(letter)) {
                 return "disabled";

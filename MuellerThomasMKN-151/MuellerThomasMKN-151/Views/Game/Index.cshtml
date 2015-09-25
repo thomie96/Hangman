@@ -1,43 +1,68 @@
-﻿@model MuellerThomasMKN_151.Models.Game
+﻿
+@model MuellerThomasMKN_151.Models.Game
 @{
     ViewBag.Title = "Hangman";
-
-    <h3>Aktuelle Fehler: @Model.currentErrors</h3>
-    <h3>Maximale Fehler: @Model.maxErrors</h3>
-
-    <h3>@ViewData["Word"]</h3>
 }
+
+<h3>Aktuelle Fehler: @Model.currentErrors</h3>
+<h3>Maximale Fehler: @Model.maxErrors</h3>
+
+
+
+
+<div id="gamedisplaycontainer">
+    <div id="hangmanpic">
+        <img src="~/Images/hangman_@(Model.currentErrors.ToString()).png" />
+    </div>
+    @if (Model.state != MuellerThomasMKN_151.Models.Game.eGameState.ACTIVE)
+    {
+        <div id="result">
+            @if (Model.state == MuellerThomasMKN_151.Models.Game.eGameState.WON)
+            {
+                <p>Glückwunsch du hast gewonnen.</p>
+            }
+            else if (Model.state == MuellerThomasMKN_151.Models.Game.eGameState.LOST)
+            {
+                <p>Leider Verloren.</p>
+                <p>Das korrekte Wort wäre "@Model.completeWord".</p>
+            }
+            <a class="btn btn-default" href=@Url.Action("Index", "Game")>Erneut Spielen</a>
+        </div>
+    }
+</div>
+
+<h3>@Model.showWord</h3>
 
 @using (Html.BeginForm("LetterChosen", "Game", FormMethod.Post))
 {
-    <button type="submit" class="btn btn-default @Model.isDisabled('A')" name="value" value="A">A</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('B')" name="value" value="B">B</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('C')" name="value" value="C">C</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('D')" name="value" value="D">D</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('E')" name="value" value="E">E</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('F')" name="value" value="F">F</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('G')" name="value" value="G">G</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('H')" name="value" value="H">H</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('I')" name="value" value="I">I</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('J')" name="value" value="J">J</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('K')" name="value" value="K">K</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('L')" name="value" value="L">L</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('M')" name="value" value="M">M</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('N')" name="value" value="N">N</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('O')" name="value" value="O">O</button><br />
-    <button type="submit" class="btn btn-default @Model.isDisabled('P')" name="value" value="P">P</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('Q')" name="value" value="Q">Q</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('R')" name="value" value="R">R</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('S')" name="value" value="S">S</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('T')" name="value" value="T">T</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('U')" name="value" value="U">U</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('V')" name="value" value="V">V</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('W')" name="value" value="W">W</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('X')" name="value" value="X">X</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('Y')" name="value" value="Y">Y</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('Z')" name="value" value="Z">Z</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('Ä')" name="value" value="Ä">Ä</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('Ü')" name="value" value="Ü">Ü</button>
-    <button type="submit" class="btn btn-default @Model.isDisabled('Ö')" name="value" value="Ö">Ö</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('A')" name="value" value="A">A</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('B')" name="value" value="B">B</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('C')" name="value" value="C">C</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('D')" name="value" value="D">D</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('E')" name="value" value="E">E</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('F')" name="value" value="F">F</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('G')" name="value" value="G">G</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('H')" name="value" value="H">H</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('I')" name="value" value="I">I</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('J')" name="value" value="J">J</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('K')" name="value" value="K">K</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('L')" name="value" value="L">L</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('M')" name="value" value="M">M</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('N')" name="value" value="N">N</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('O')" name="value" value="O">O</button><br />
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('P')" name="value" value="P">P</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('Q')" name="value" value="Q">Q</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('R')" name="value" value="R">R</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('S')" name="value" value="S">S</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('T')" name="value" value="T">T</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('U')" name="value" value="U">U</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('V')" name="value" value="V">V</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('W')" name="value" value="W">W</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('X')" name="value" value="X">X</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('Y')" name="value" value="Y">Y</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('Z')" name="value" value="Z">Z</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('Ä')" name="value" value="Ä">Ä</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('Ü')" name="value" value="Ü">Ü</button>
+    <button type="submit" class="btn btn-default @Model.isUsedLetter('Ö')" name="value" value="Ö">Ö</button>
 }
 
